@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="utf-8">
+<head>
+    <meta charset="utf-8">
+    <!-- 引入 ECharts 文件 -->
+    <script src="./echarts.min.js"></script>
+    <title></title>
+</head>
+<body>
+<div id="main" style="width: 1600px;height:800px;"></div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+
+
+    var colors = ['#694d9f', '#dea32c', '#EE6666'];
+
+    option = {
+        color: colors,
+
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross'
+            }
+        },
+        grid: {
+            right: '20%'
+        },
+        toolbox: {
+            feature: {
+                dataView: {show: true, readOnly: false},
+                restore: {show: true},
+                saveAsImage: {show: true}
+            }
+        },
+        legend: {
+            data: ['点数', '平均速率']
+        },
+        xAxis: [
+            {
+                type: 'category',
+                axisTick: {
+                    alignWithLabel: true
+                },
+                data: ['2021/4/12',
+                    '2021/4/19',
+                    '2021/4/26',
+                    '2021/4/5',
+                    '2021/5/3']
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                name: '点数',
+                min: 0,
+                max: 40,
+                position: 'right',
+                axisLine: {
+                    show: true,
+                    lineStyle: {
+                        color: colors[0]
+                    }
+                },
+                axisLabel: {
+                    formatter: '{value} sp'
+                }
+            },
+            {
+                type: 'value',
+                name: '平均速率',
+                min: 0,
+                max: 1.1,
+                position: 'left',
+                axisLine: {
+                    show: true,
+                    lineStyle: {
+                        color: colors[0]
+                    }
+                },
+                axisLabel: {
+                    formatter: '{value} sp/人天'
+                }
+            }
+        ],
+        series: [
+            {
+                name: '点数',
+                type: 'bar',
+                data: [15,25,38,19,16]
+            },
+            {
+                name: '平均速率',
+                type: 'line',
+                yAxisIndex: 1,
+                data: [0.5,0.833333333,1.055555556,0.95,1.066666667]
+            }
+        ]
+    };
+
+    option && myChart.setOption(option);
+
+</script>
+</body>
+</html>
